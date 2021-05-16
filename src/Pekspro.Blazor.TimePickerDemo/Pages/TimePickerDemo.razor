@@ -1,0 +1,25 @@
+@page "/timePckerDemo"
+
+<h1>Time picker</h1>
+<p>Selected time: <strong>@(new DateTime(2000, 1, 1).AddSeconds(SecondOfDay).ToString("HH:mm"))</strong></p>
+
+<EditForm Model="string.Empty">
+    <p>
+        <Pekspro.Blazor.TimePicker.TimePickerComponent @bind-SecondOfDay="SecondOfDay" UseNativeTimePicker="@UseNative" IsDisabled="IsDisabled" />
+    </p>
+
+    <p>
+        <InputCheckbox @bind-Value="UseNative" id="usenative" /> <label for="usenative">Use native control (not supported by all browsers)</label>
+        <br />
+
+        <InputCheckbox @bind-Value="IsDisabled" id="isdisable" /> <label for="isdisable">Disabled</label>
+    </p>
+</EditForm>
+
+@code {
+    private int SecondOfDay = 3 * 3600 + 14 * 60;
+
+    public bool IsDisabled { get; set; }
+
+    public bool UseNative { get; set; }
+}

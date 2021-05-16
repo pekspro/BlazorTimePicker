@@ -1,0 +1,24 @@
+@page "/"
+
+<h1>Date time picker</h1>
+<p>Selected date and time: <strong>@SelectedDateTime.ToString("yyyy-MM-dd HH:mm")</strong></p>
+
+<EditForm Model="string.Empty">
+    <p>
+        <Pekspro.Blazor.TimePicker.DateTimePickerComponent @bind-DateAndTime="SelectedDateTime" UseNative="@UseNative" IsDisabled="IsDisabled" />
+    </p>
+    <p>
+        <InputCheckbox @bind-Value="UseNative" id="usenative" /> <label for="usenative">Use native control (not supported by all browsers)</label>
+        <br />
+    
+        <InputCheckbox @bind-Value="IsDisabled" id="isdisable" /> <label for="isdisable">Disabled</label>
+    </p>
+</EditForm>
+
+@code {
+    private DateTime SelectedDateTime = new DateTime(2038, 1, 20, 10, 20, 30);
+
+    public bool IsDisabled { get; set; }
+
+    public bool UseNative { get; set; }
+}
